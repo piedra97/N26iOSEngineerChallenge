@@ -10,12 +10,12 @@ import Foundation
 class UtilsDate {
     
     // Returns the today date in a given date format
-    static func getActualDate(dateFormat: String) -> String? {
+    class func getActualDate(dateFormat: String) -> String? {
         return getDateFormatter(dateFormat: dateFormat).string(from: Date())
     }
     
     // Returns the date in two weeks from now
-    static func getDateFromTwoWeeks(dateFormat: String) -> String? {
+    class func getDateFromTwoWeeks(dateFormat: String) -> String? {
         guard let twoWeeksDate = Calendar.current.date(byAdding: .day, value: 15, to: Date()) else {
             return nil
         }
