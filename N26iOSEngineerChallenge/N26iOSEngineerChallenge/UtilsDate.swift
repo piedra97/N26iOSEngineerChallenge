@@ -23,7 +23,7 @@ class UtilsDate {
     }
     
     // Returns a DateFormatter object with the desire date format
-    private static func getDateFormatter(dateFormat: String) -> DateFormatter {
+    private class func getDateFormatter(dateFormat: String) -> DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = dateFormat
         return formatter
