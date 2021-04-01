@@ -13,6 +13,9 @@
 		23851E8926164B2F00144004 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23851E8726164B2F00144004 /* Main.storyboard */; };
 		23851E8B26164B3100144004 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23851E8A26164B3100144004 /* Assets.xcassets */; };
 		23851E8E26164B3100144004 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23851E8C26164B3100144004 /* LaunchScreen.storyboard */; };
+		23851E9726164B9E00144004 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E9626164B9E00144004 /* Router.swift */; };
+		23851E9A2616504B00144004 /* UtilsDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E992616504B00144004 /* UtilsDate.swift */; };
+		23851E9E2616551A00144004 /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E9D2616551A00144004 /* ServiceLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		23851E8A26164B3100144004 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23851E8D26164B3100144004 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23851E8F26164B3100144004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23851E9626164B9E00144004 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		23851E992616504B00144004 /* UtilsDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsDate.swift; sourceTree = "<group>"; };
+		23851E9D2616551A00144004 /* ServiceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		23851E8026164B2F00144004 /* N26iOSEngineerChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				23851E9C2616547500144004 /* API */,
 				23851E8126164B2F00144004 /* AppDelegate.swift */,
 				23851E8326164B2F00144004 /* SceneDelegate.swift */,
 				23851E8526164B2F00144004 /* ViewController.swift */,
@@ -63,8 +70,18 @@
 				23851E8A26164B3100144004 /* Assets.xcassets */,
 				23851E8C26164B3100144004 /* LaunchScreen.storyboard */,
 				23851E8F26164B3100144004 /* Info.plist */,
+				23851E992616504B00144004 /* UtilsDate.swift */,
 			);
 			path = N26iOSEngineerChallenge;
+			sourceTree = "<group>";
+		};
+		23851E9C2616547500144004 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				23851E9626164B9E00144004 /* Router.swift */,
+				23851E9D2616551A00144004 /* ServiceLayer.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +154,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23851E9726164B9E00144004 /* Router.swift in Sources */,
+				23851E9E2616551A00144004 /* ServiceLayer.swift in Sources */,
+				23851E9A2616504B00144004 /* UtilsDate.swift in Sources */,
 				23851E8626164B2F00144004 /* ViewController.swift in Sources */,
 				23851E8226164B2F00144004 /* AppDelegate.swift in Sources */,
 				23851E8426164B2F00144004 /* SceneDelegate.swift in Sources */,
