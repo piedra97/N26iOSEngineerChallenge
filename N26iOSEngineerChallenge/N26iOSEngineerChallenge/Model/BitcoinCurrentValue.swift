@@ -7,7 +7,7 @@
 
 import Foundation
 // MARK: - Empty
-struct BitCoinCurrentValue: Codable {
+struct BitcoinCurrentValue: Codable {
     let disclaimer, chartName: String?
     let bpi: Bpi?
 }
