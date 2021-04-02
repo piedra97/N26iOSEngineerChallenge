@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23195ECF2617619500A5BFB8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23195ECE2617619500A5BFB8 /* BaseViewController.swift */; };
 		23195EDB261765F200A5BFB8 /* Literals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23195EDA261765F200A5BFB8 /* Literals.swift */; };
+		23195EF72617ADD300A5BFB8 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23195EF62617ADD300A5BFB8 /* UITableView+EmptyState.swift */; };
 		2375504426171CFE00331898 /* BitcoinHistoricValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375504326171CFE00331898 /* BitcoinHistoricValue.swift */; };
 		2375504826171F4700331898 /* BitcoinCurrentValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375504726171F4700331898 /* BitcoinCurrentValue.swift */; };
 		2375504E2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375504D2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		23195ECE2617619500A5BFB8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		23195EDA261765F200A5BFB8 /* Literals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literals.swift; sourceTree = "<group>"; };
+		23195EF62617ADD300A5BFB8 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
 		2375504326171CFE00331898 /* BitcoinHistoricValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinHistoricValue.swift; sourceTree = "<group>"; };
 		2375504726171F4700331898 /* BitcoinCurrentValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinCurrentValue.swift; sourceTree = "<group>"; };
 		2375504D2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinHistoricValuesListTableViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				23851E992616504B00144004 /* UtilsDate.swift */,
 				23195ECE2617619500A5BFB8 /* BaseViewController.swift */,
 				23195EDA261765F200A5BFB8 /* Literals.swift */,
+				23195EF62617ADD300A5BFB8 /* UITableView+EmptyState.swift */,
 			);
 			path = N26iOSEngineerChallenge;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				2375504426171CFE00331898 /* BitcoinHistoricValue.swift in Sources */,
 				23851E8226164B2F00144004 /* AppDelegate.swift in Sources */,
 				23851E8426164B2F00144004 /* SceneDelegate.swift in Sources */,
+				23195EF72617ADD300A5BFB8 /* UITableView+EmptyState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

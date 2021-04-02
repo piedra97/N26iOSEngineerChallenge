@@ -63,8 +63,9 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
         if let responsebpi = self.cellModel?.bpi {
             if responsebpi.isEmpty {
                 refreshControl.endRefreshing()
-                presentEmptyState(message: Literals.EmptyState.historicValues)
+                presentEmptyState(message: Literals.EmptyState.historicValues, tableView: tableView)
             } else {
+                restoreNotEmptyState(tableView: tableView)
                 requestCurrentBitCoinValue()
             }
         }

@@ -16,16 +16,6 @@ class BaseViewController: UIViewController {
     }
     
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
     // MARK: - View configuration
     /**
      Displays a simple error dialog
@@ -55,18 +45,11 @@ class BaseViewController: UIViewController {
                      completion: nil);
     }
     
-    func presentEmptyState(message: String) {
-        //Configure empty message
-        let labelRect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-        let messageLabel = UILabel(frame: labelRect)
-        messageLabel.text = message
-        messageLabel.textColor = UIColor.black
-        messageLabel.numberOfLines = 0;
-        messageLabel.textAlignment = .center;
-        messageLabel.sizeToFit()
-        
-        //Add views
-        
-        self.view.addSubview(messageLabel)
+    func presentEmptyState(message: String, tableView: UITableView) {
+        tableView.setEmptyMessage(message: message)
+    }
+    
+    func restoreNotEmptyState(tableView: UITableView) {
+        tableView.restore()
     }
 }
