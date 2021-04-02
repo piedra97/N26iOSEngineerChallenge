@@ -30,11 +30,12 @@ enum Router {
     
     //Gives the correct path for each endpoint
     var path: String {
+        let currencyCode = "EUR"
         switch self {
         case .getBitcointFromTodayToTwoWeeks:
             return "/v1/bpi/historical/close.json"
         case .getBitcoinCurrentValue:
-            return "v1/bpi/currentprice.json"
+            return "v1/bpi/currentprice/" + currencyCode + ".json"
         }
     }
     
@@ -50,4 +51,10 @@ enum Router {
         }
     }
     
+    var method: String {
+        switch self {
+          case .getBitcointFromTodayToTwoWeeks, .getBitcoinCurrentValue:
+            return "GET"
+        }
+      }
 }
