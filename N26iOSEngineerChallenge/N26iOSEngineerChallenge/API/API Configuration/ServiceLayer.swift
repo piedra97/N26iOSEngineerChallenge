@@ -10,7 +10,7 @@ import Foundation
 class ServiceLayer {
     
     
-    class func request<T: Codable>(router: Router, completion: @escaping (Result<[String: [T]], Error>) -> ()) {
+    class func request<T: Codable>(router: Router, completion: @escaping (Result<T, Error>) -> ()) {
         //build url components
         let urlComponents = buildURLComponents(router: router)
         
@@ -30,7 +30,7 @@ class ServiceLayer {
                 }
                 
                 //Start decoding response object because we ensure the data
-                let responseObject = try! JSONDecoder().decode([String: [T]].self, from: data)
+                let responseObject = try! JSONDecoder().decode(T.self, from: data)
                 
                 //Change to main thread
                 DispatchQueue.main.async {

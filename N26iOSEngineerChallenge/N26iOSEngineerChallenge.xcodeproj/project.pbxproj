@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2375504426171CFE00331898 /* BitcoinHistoricValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375504326171CFE00331898 /* BitcoinHistoricValue.swift */; };
 		2375504826171F4700331898 /* BitcoinCurrentValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375504726171F4700331898 /* BitcoinCurrentValue.swift */; };
+		2375504E2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375504D2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift */; };
 		23851E8226164B2F00144004 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E8126164B2F00144004 /* AppDelegate.swift */; };
 		23851E8426164B2F00144004 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E8326164B2F00144004 /* SceneDelegate.swift */; };
 		23851E8626164B2F00144004 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E8526164B2F00144004 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		2375504326171CFE00331898 /* BitcoinHistoricValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinHistoricValue.swift; sourceTree = "<group>"; };
 		2375504726171F4700331898 /* BitcoinCurrentValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinCurrentValue.swift; sourceTree = "<group>"; };
+		2375504D2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinHistoricValuesListTableViewController.swift; sourceTree = "<group>"; };
 		23851E7E26164B2F00144004 /* N26iOSEngineerChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = N26iOSEngineerChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23851E8126164B2F00144004 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23851E8326164B2F00144004 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2375504A261724CC00331898 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2375504D2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2375504B261724D400331898 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23851E8726164B2F00144004 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		23851E7526164B2F00144004 = {
 			isa = PBXGroup;
 			children = (
@@ -84,12 +102,13 @@
 		23851E8026164B2F00144004 /* N26iOSEngineerChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				2375504B261724D400331898 /* View */,
+				2375504A261724CC00331898 /* Controller */,
 				2375504226171ACE00331898 /* Model */,
 				23851E9C2616547500144004 /* API */,
 				23851E8126164B2F00144004 /* AppDelegate.swift */,
 				23851E8326164B2F00144004 /* SceneDelegate.swift */,
 				23851E8526164B2F00144004 /* ViewController.swift */,
-				23851E8726164B2F00144004 /* Main.storyboard */,
 				23851E8A26164B3100144004 /* Assets.xcassets */,
 				23851E8C26164B3100144004 /* LaunchScreen.storyboard */,
 				23851E8F26164B3100144004 /* Info.plist */,
@@ -177,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23851E9726164B9E00144004 /* Router.swift in Sources */,
+				2375504E2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift in Sources */,
 				23851E9E2616551A00144004 /* ServiceLayer.swift in Sources */,
 				23851E9A2616504B00144004 /* UtilsDate.swift in Sources */,
 				23851E8626164B2F00144004 /* ViewController.swift in Sources */,

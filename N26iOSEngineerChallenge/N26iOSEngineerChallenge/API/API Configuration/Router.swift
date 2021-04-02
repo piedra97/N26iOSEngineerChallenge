@@ -34,12 +34,12 @@ enum Router {
         case .getBitcointFromTodayToTwoWeeks:
             return "/v1/bpi/historical/close.json"
         case .getBitcoinCurrentValue:
-            return "v1/bpi/currentprice/.json"
+            return "/v1/bpi/currentprice.json"
         }
     }
     
     //Gives the correct parameters for each endpoint
-    var parameters: [URLQueryItem] {
+    var parameters: [URLQueryItem]? {
         let formatDate = "yyyy-MM-dd"
         let currency = "EUR"
         switch self {
@@ -48,7 +48,7 @@ enum Router {
                     URLQueryItem(name: "start", value: UtilsDate.getDateFromTwoWeeksBehind(dateFormat: formatDate)),
                     URLQueryItem(name: "end", value: UtilsDate.getActualDate(dateFormat: formatDate))]
         case .getBitcoinCurrentValue:
-            return [URLQueryItem(name: "", value: nil)]
+            return nil
         }
     }
     

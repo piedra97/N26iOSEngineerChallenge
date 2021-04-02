@@ -7,15 +7,14 @@
 
 import Foundation
 // MARK: - Empty
-// MARK: - Empty
 struct BitCoinCurrentValue: Codable {
-    let disclaimer, chartName: String
-    let bpi: Bpi
+    let disclaimer, chartName: String?
+    let bpi: Bpi?
 }
 
 // MARK: - Bpi
 struct Bpi: Codable {
-    let usd, gbp, eur: Currency
+    let usd, gbp, eur: Currency?
 
     enum CodingKeys: String, CodingKey {
         case usd = "USD"
@@ -26,8 +25,8 @@ struct Bpi: Codable {
 
 // MARK: - Eur
 struct Currency: Codable {
-    let code, symbol, rate, description: String
-    let rateFloat: Double
+    let code, symbol, rate, description: String?
+    let rateFloat: Double?
 
     enum CodingKeys: String, CodingKey {
         case code, symbol, rate
@@ -35,4 +34,5 @@ struct Currency: Codable {
         case rateFloat = "rate_float"
     }
 }
+
 
