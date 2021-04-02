@@ -30,22 +30,23 @@ enum Router {
     
     //Gives the correct path for each endpoint
     var path: String {
-        let currencyCode = "EUR"
         switch self {
         case .getBitcointFromTodayToTwoWeeks:
             return "/v1/bpi/historical/close.json"
         case .getBitcoinCurrentValue:
-            return "v1/bpi/currentprice/" + currencyCode + ".json"
+            return "v1/bpi/currentprice/.json"
         }
     }
     
     //Gives the correct parameters for each endpoint
     var parameters: [URLQueryItem] {
         let formatDate = "yyyy-MM-dd"
+        let currency = "EUR"
         switch self {
         case .getBitcointFromTodayToTwoWeeks:
-            return [URLQueryItem(name: "start", value: UtilsDate.getActualDate(dateFormat: formatDate)),
-                    URLQueryItem(name: "end", value: UtilsDate.getDateFromTwoWeeks(dateFormat: formatDate))]
+            return [URLQueryItem(name:"currency", value: currency),
+                    URLQueryItem(name: "start", value: UtilsDate.getDateFromTwoWeeksBehind(dateFormat: formatDate)),
+                    URLQueryItem(name: "end", value: UtilsDate.getActualDate(dateFormat: formatDate))]
         case .getBitcoinCurrentValue:
             return [URLQueryItem(name: "", value: nil)]
         }

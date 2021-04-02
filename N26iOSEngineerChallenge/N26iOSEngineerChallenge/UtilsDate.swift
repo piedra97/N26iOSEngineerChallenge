@@ -15,8 +15,8 @@ class UtilsDate {
     }
     
     // Returns the date in two weeks from now
-    class func getDateFromTwoWeeks(dateFormat: String) -> String? {
-        guard let twoWeeksDate = Calendar.current.date(byAdding: .day, value: 15, to: Date()) else {
+    class func getDateFromTwoWeeksBehind(dateFormat: String) -> String? {
+        guard let twoWeeksDate = Calendar.current.date(byAdding: .day, value: -14, to: Date()) else {
             return nil
         }
         return getDateFormatter(dateFormat: dateFormat).string(from: twoWeeksDate)
