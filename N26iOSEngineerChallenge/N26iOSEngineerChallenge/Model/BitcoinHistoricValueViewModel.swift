@@ -10,41 +10,72 @@ import Foundation
 struct BitcoinHistoricValueViewModel {
     var values : [BitcoinValue]?
     
-    init(historicValuesResponse: BitcoinHistoricValue?, currentValueResponse: BitcoinCurrentValue?) {
+    init(historicValuesEurResponse: BitcoinHistoricValue?, historicValuesUsdResponse: BitcoinHistoricValue?, historicValuesGbpResponse: BitcoinHistoricValue?, currentValueResponse: BitcoinCurrentValue?) {
         values = []
+        // Add today's bitcoin value in EUROS which is not returned in API response
+        values?.append(BitcoinValue(day: Date(), valueEUR: currentValueResponse?.getBitcoinRateEur(), valueUSD: currentValueResponse?.getBitcoinRateUsd(), valueGBP: currentValueResponse?.getBitcoinRateGbp()))
+        
         // Convert API response dictionary into a more suitable object
-        if let historicValues = historicValuesResponse?.bpi {
-            for (day, value) in  historicValues {
-                values?.append(BitcoinValue(day: UtilsDate.stringToDate(date: day, dateFormat: Literals.DateFormats.yyyyMMDDFormat), value: value))
-            }
-            // Add today's bitcoin value in EUROS which is not returned in API response
-            values?.append(BitcoinValue(day: Date(), value: currentValueResponse?.getBitcoinRateEur()))
-            // Sort the values dictionary
-            values?.sort {
-                $0.day ?? Date() > $1.day ?? Date()
+        if let historicEurValues = historicValuesEurResponse?.bpi {
+            for (day, value) in  historicEurValues {
+                var bitcoinValue = BitcoinValue()
+                bitcoinValue.day = UtilsDate.stringToDate(date: day, dateFormat: Literals.DateFormats.yyyyMMDDFormat)
+                bitcoinValue.valueEUR = value
+                if let historicUsdValues = historicValuesUsdResponse?.bpi {
+                    bitcoinValue.valueUSD = historicUsdValues[day]
+                }
+                if let historicGbpValues = historicValuesGbpResponse?.bpi {
+                    bitcoinValue.valueGBP = historicGbpValues[day]
+                }
+                values?.append(bitcoinValue)
             }
         }
+        // Sort the values dictionary
+        self.values?.sort {
+            $0.day ?? Date() > $1.day ?? Date()
+        }
     }
-    
-    
 }
+
 
 struct BitcoinValue {
     var day : Date?
-    var value : Double?
+    var valueEUR : Double?
+    var valueUSD : Double?
+    var valueGBP : Double?
     
-    init(day: Date?, value: Double?) {
+    init () {
+        
+    }
+    
+    init(day: Date?, valueEUR: Double?, valueUSD: Double?, valueGBP: Double?) {
         self.day = day
-        self.value = value
+        self.valueEUR = valueEUR
+        self.valueUSD = valueUSD
+        self.valueGBP = valueGBP
     }
     
     func getDay() -> String {
         return UtilsDate.dateToString(date: day ?? Date(), dateFormat: Literals.DateFormats.yyyyMMDDFormat)
     }
     
-    func getValue() -> String {
-        if let valueClean = value {
-            return String(format: "%.2f", valueClean) + Literals.Common.eurCurrencySymbol
+    func getValueEur() -> String {
+        if let valueClean = valueEUR {
+            return String(format: "%.2f", valueClean) + (Literals.CurrencySymbol.eur)
+        }
+        return "--"
+    }
+    
+    func getValueUSD() -> String {
+        if let valueClean = valueUSD {
+            return String(format: "%.2f", valueClean) + (Literals.CurrencySymbol.usd)
+        }
+        return "--"
+    }
+    
+    func getValueGBP() -> String {
+        if let valueClean = valueGBP {
+            return String(format: "%.2f", valueClean) + (Literals.CurrencySymbol.gbp)
         }
         return "--"
     }

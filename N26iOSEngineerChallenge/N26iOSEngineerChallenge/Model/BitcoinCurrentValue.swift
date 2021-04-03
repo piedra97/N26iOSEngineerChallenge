@@ -14,6 +14,26 @@ struct BitcoinCurrentValue: Codable {
     func getBitcoinRateEur() -> Double? {
         return self.bpi?.eur?.rateFloat
     }
+    
+    func getBitcoinRateUsd() -> Double? {
+        return self.bpi?.usd?.rateFloat
+    }
+    
+    func getBitcoinRateGbp() -> Double? {
+        return self.bpi?.gbp?.rateFloat
+    }
+    
+    func getEurSymbol() -> String? {
+        return self.bpi?.eur?.symbol
+    }
+    
+    func getUsdSymbol() -> String? {
+        return self.bpi?.usd?.symbol
+    }
+    
+    func getGbpSymbol() -> String? {
+        return self.bpi?.gbp?.symbol
+    }
 }
 
 // MARK: - Bpi

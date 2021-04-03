@@ -18,62 +18,85 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestHistoricBitcoinValue()
+        fetchBitcoinHistoricValues()
     }
     
     // MARK: - API Requests
     
-    private func requestHistoricBitcoinValue() {
-        ServiceLayer.request(router: Router.getBitcointFromTodayToTwoWeeks) { (result: Result<BitcoinHistoricValue? , Error>) in
-            switch result {
-            case .success(let response):
-                self.processSuccessData(response: response)
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    super.showErrorDialog(error: error)
-                }
-            }
-        }
-    }
-    
-    private func requestCurrentBitCoinValue(responseHistoricValues: BitcoinHistoricValue?) {
+    private func fetchBitcoinHistoricValues() {
+        var currentValueResponse: BitcoinCurrentValue?
+        var bitcoinEurHistoricValueResponse: BitcoinHistoricValue?
+        var bitcoinUsdHistoricValueResponse: BitcoinHistoricValue?
+        var bitcoinGbpHistoricValueResponse: BitcoinHistoricValue?
+        var networkError: Error?
+        
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         ServiceLayer.request(router: Router.getBitcoinCurrentValue) { (result:
             Result<BitcoinCurrentValue?, Error>) in
             switch result {
             case .success(let response):
-                self.processTodayValue(responseHistoricValues: responseHistoricValues, responseCurrentValue: response)
+                currentValueResponse = response
+                dispatchGroup.leave()
             case .failure(let error):
-                DispatchQueue.main.async {
-                    super.showErrorDialog(error: error)
+                networkError = error
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.enter()
+        ServiceLayer.request(router: Router.getBitcoinFromTodayToTwoWeeksEur) { (result: Result<BitcoinHistoricValue? , Error>) in
+            switch result {
+            case .success(let response):
+                bitcoinEurHistoricValueResponse = response
+                dispatchGroup.leave()
+            case .failure(let error):
+                networkError = error
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.enter()
+        ServiceLayer.request(router: Router.getBitcoinFromTodayToTwoWeeksUsd) { (result: Result<BitcoinHistoricValue? , Error>) in
+            switch result {
+            case .success(let response):
+                bitcoinUsdHistoricValueResponse = response
+                dispatchGroup.leave()
+            case .failure(let error):
+                networkError = error
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.enter()
+        ServiceLayer.request(router: Router.getBitcoinFromTodayToTwoWeeksGbp) { (result: Result<BitcoinHistoricValue? , Error>) in
+            switch result {
+            case .success(let response):
+                bitcoinGbpHistoricValueResponse = response
+                dispatchGroup.leave()
+            case .failure(let error):
+                networkError = error
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            if let error = networkError {
+                super.showErrorDialog(error: error)
+            } else {
+                if let currentValue = currentValueResponse, let eurValue = bitcoinEurHistoricValueResponse, let usdValue = bitcoinUsdHistoricValueResponse, let gbpValue = bitcoinGbpHistoricValueResponse {
+                    if eurValue.bpi.isEmpty {
+                        super.presentEmptyState(message: Literals.EmptyState.historicValues, tableView: self.tableView)
+                    } else {
+                        let viewModel = BitcoinHistoricValueViewModel(historicValuesEurResponse: eurValue, historicValuesUsdResponse: usdValue, historicValuesGbpResponse: gbpValue, currentValueResponse: currentValue)
+                        self.cellModel = viewModel.values
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
     }
-    
-    // MARK: - Data management
-    
-    private func processSuccessData(response: BitcoinHistoricValue?) {
-        checkIfResponseIsEmpty(response: response)
-    }
-    
-    private func checkIfResponseIsEmpty(response: BitcoinHistoricValue?) {
-        if let responsebpi = response?.bpi {
-            if responsebpi.isEmpty {
-                presentEmptyState(message: Literals.EmptyState.historicValues, tableView: tableView)
-            } else {
-                requestCurrentBitCoinValue(responseHistoricValues: response)
-            }
-        }
-    }
-    
-    private func processTodayValue(responseHistoricValues: BitcoinHistoricValue?, responseCurrentValue: BitcoinCurrentValue?) {
-            let viewModel = BitcoinHistoricValueViewModel(historicValuesResponse: responseHistoricValues, currentValueResponse: responseCurrentValue)
-        self.cellModel = viewModel.values
-        tableView.reloadData()
-    }
-    
 }
-
 
 //MARK: -TableViewDataSource & Delegate
 extension BitcoinHistoricValuesListTableViewController: UITableViewDataSource, UITableViewDelegate {
@@ -86,7 +109,7 @@ extension BitcoinHistoricValuesListTableViewController: UITableViewDataSource, U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Literals.Identifiers.cellBitCoinValue, for: indexPath)
         cell.textLabel?.text = cellModel?[indexPath.row].getDay()
-        cell.detailTextLabel?.text = cellModel?[indexPath.row].getValue()
+        cell.detailTextLabel?.text = cellModel?[indexPath.row].getValueEur()
         return cell
     }
 }

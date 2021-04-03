@@ -28,10 +28,16 @@ struct Literals {
     
     struct Common {
         static let refreshControlDescription = "Pull to refresh"
-        static let eurCurrencySymbol = "€"
     }
     
     struct DateFormats {
         static let yyyyMMDDFormat = "yyyy-MM-dd"
+    }
+    
+    struct CurrencySymbol {
+        // Try to retrieve currency symbols with api response but format was wrong retrieved
+        static let eur = "€"
+        static let usd = "$"
+        static let gbp = "£"
     }
 }
