@@ -28,5 +28,10 @@ struct Literals {
     
     struct Common {
         static let refreshControlDescription = "Pull to refresh"
+        static let eurCurrencySymbol = "€"
+    }
+    
+    struct DateFormats {
+        static let yyyyMMDDFormat = "yyyy-MM-dd"
     }
 }

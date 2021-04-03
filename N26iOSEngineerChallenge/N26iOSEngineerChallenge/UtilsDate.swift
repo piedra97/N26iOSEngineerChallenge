@@ -28,4 +28,12 @@ class UtilsDate {
         formatter.dateFormat = dateFormat
         return formatter
     }
+    
+    class func stringToDate(date: String, dateFormat: String) -> Date? {
+        return getDateFormatter(dateFormat: dateFormat).date(from: date)
+    }
+    
+    class func dateToString(date: Date, dateFormat: String) -> String {
+        return getDateFormatter(dateFormat: dateFormat).string(from: date)
+    }
 }

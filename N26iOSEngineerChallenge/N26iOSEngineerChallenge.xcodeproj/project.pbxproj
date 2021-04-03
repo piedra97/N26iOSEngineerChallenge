@@ -22,6 +22,7 @@
 		23851E9726164B9E00144004 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E9626164B9E00144004 /* Router.swift */; };
 		23851E9A2616504B00144004 /* UtilsDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E992616504B00144004 /* UtilsDate.swift */; };
 		23851E9E2616551A00144004 /* ServiceLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E9D2616551A00144004 /* ServiceLayer.swift */; };
+		23F650FE26185D5F00130A08 /* BitcoinHistoricValueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F650FD26185D5F00130A08 /* BitcoinHistoricValueViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		23851E9626164B9E00144004 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		23851E992616504B00144004 /* UtilsDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsDate.swift; sourceTree = "<group>"; };
 		23851E9D2616551A00144004 /* ServiceLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLayer.swift; sourceTree = "<group>"; };
+		23F650FD26185D5F00130A08 /* BitcoinHistoricValueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinHistoricValueViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			children = (
 				2375504326171CFE00331898 /* BitcoinHistoricValue.swift */,
 				2375504726171F4700331898 /* BitcoinCurrentValue.swift */,
+				23F650FD26185D5F00130A08 /* BitcoinHistoricValueViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			files = (
 				23851E9726164B9E00144004 /* Router.swift in Sources */,
 				2375504E2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift in Sources */,
+				23F650FE26185D5F00130A08 /* BitcoinHistoricValueViewModel.swift in Sources */,
 				23195ECF2617619500A5BFB8 /* BaseViewController.swift in Sources */,
 				23851E9E2616551A00144004 /* ServiceLayer.swift in Sources */,
 				23851E9A2616504B00144004 /* UtilsDate.swift in Sources */,

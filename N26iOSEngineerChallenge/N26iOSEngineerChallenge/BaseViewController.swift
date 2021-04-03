@@ -48,8 +48,4 @@ class BaseViewController: UIViewController {
     func presentEmptyState(message: String, tableView: UITableView) {
         tableView.setEmptyMessage(message: message)
     }
-    
-    func restoreNotEmptyState(tableView: UITableView) {
-        tableView.restore()
-    }
 }

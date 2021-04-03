@@ -9,8 +9,7 @@ import UIKit
 
 class BitcoinHistoricValuesListTableViewController: BaseViewController {
     
-    private var cellModel: BitcoinHistoricValue?
-    private let refreshControl = UIRefreshControl()
+    private var cellModel: [BitcoinValue]?
     
     // MARK: - Outlets
     @IBOutlet var tableView: UITableView!
@@ -19,7 +18,6 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableSettings()
         requestHistoricBitcoinValue()
     }
     
@@ -38,12 +36,12 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
         }
     }
     
-    private func requestCurrentBitCoinValue() {
+    private func requestCurrentBitCoinValue(responseHistoricValues: BitcoinHistoricValue?) {
         ServiceLayer.request(router: Router.getBitcoinCurrentValue) { (result:
             Result<BitcoinCurrentValue?, Error>) in
             switch result {
             case .success(let response):
-                self.processTodayValue(response: response)
+                self.processTodayValue(responseHistoricValues: responseHistoricValues, responseCurrentValue: response)
             case .failure(let error):
                 DispatchQueue.main.async {
                     super.showErrorDialog(error: error)
@@ -55,47 +53,25 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
     // MARK: - Data management
     
     private func processSuccessData(response: BitcoinHistoricValue?) {
-        cellModel = response
-        checkIfResponseIsEmpty()
+        checkIfResponseIsEmpty(response: response)
     }
     
-    private func checkIfResponseIsEmpty() {
-        if let responsebpi = self.cellModel?.bpi {
+    private func checkIfResponseIsEmpty(response: BitcoinHistoricValue?) {
+        if let responsebpi = response?.bpi {
             if responsebpi.isEmpty {
-                refreshControl.endRefreshing()
                 presentEmptyState(message: Literals.EmptyState.historicValues, tableView: tableView)
             } else {
-                restoreNotEmptyState(tableView: tableView)
-                requestCurrentBitCoinValue()
+                requestCurrentBitCoinValue(responseHistoricValues: response)
             }
         }
     }
     
-    private func processTodayValue(response: BitcoinCurrentValue?) {
-        if let todayValue = response {
-            addCurrentValueToHistoricModel(currentValue: todayValue)
-        }
+    private func processTodayValue(responseHistoricValues: BitcoinHistoricValue?, responseCurrentValue: BitcoinCurrentValue?) {
+            let viewModel = BitcoinHistoricValueViewModel(historicValuesResponse: responseHistoricValues, currentValueResponse: responseCurrentValue)
+        self.cellModel = viewModel.values
+        tableView.reloadData()
     }
     
-    private func addCurrentValueToHistoricModel(currentValue: BitcoinCurrentValue?) {
-        if let actualDate = UtilsDate.getActualDate(dateFormat: "yyyy-MM-dd") {
-            refreshControl.endRefreshing()
-            cellModel?.bpi[actualDate] = currentValue?.bpi?.eur?.rateFloat
-            tableView.reloadData()
-        }
-    }
-    
-    //MARK: - View configuration
-    private func setupTableSettings() {
-        refreshControl.attributedTitle = NSAttributedString(string:Literals.Common.refreshControlDescription)
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        tableView.refreshControl = refreshControl
-    }
-    
-    //MARK: - Action handlers
-    @objc func refresh(_ sender: AnyObject) {
-        requestHistoricBitcoinValue()
-    }
 }
 
 
@@ -104,16 +80,13 @@ extension BitcoinHistoricValuesListTableViewController: UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Api service don't retrieve todays bitcoin value
-        self.cellModel?.bpi.count ?? 0
+        self.cellModel?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Literals.Identifiers.cellBitCoinValue, for: indexPath)
-        cell.textLabel?.text = cellModel?.getDayFor(indexPath: indexPath)
-        cell.detailTextLabel?.text = cellModel?.getValueFor(indexPath: indexPath)
+        cell.textLabel?.text = cellModel?[indexPath.row].getDay()
+        cell.detailTextLabel?.text = cellModel?[indexPath.row].getValue()
         return cell
     }
-    
-    
-    
 }

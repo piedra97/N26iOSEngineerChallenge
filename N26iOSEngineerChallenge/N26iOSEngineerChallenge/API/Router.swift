@@ -40,7 +40,7 @@ enum Router {
     
     //Gives the correct parameters for each endpoint
     var parameters: [URLQueryItem]? {
-        let formatDate = "yyyy-MM-dd"
+        let formatDate = Literals.DateFormats.yyyyMMDDFormat
         let currency = "EUR"
         switch self {
         case .getBitcointFromTodayToTwoWeeks:

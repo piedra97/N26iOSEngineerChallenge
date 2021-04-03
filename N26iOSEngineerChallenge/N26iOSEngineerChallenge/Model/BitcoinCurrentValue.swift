@@ -10,6 +10,10 @@ import Foundation
 struct BitcoinCurrentValue: Codable {
     let disclaimer, chartName: String?
     let bpi: Bpi?
+    
+    func getBitcoinRateEur() -> Double? {
+        return self.bpi?.eur?.rateFloat
+    }
 }
 
 // MARK: - Bpi
