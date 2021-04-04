@@ -28,6 +28,7 @@ struct Literals {
     
     struct Common {
         static let refreshControlDescription = "Pull to refresh"
+        static let emptyString = "--"
     }
     
     struct DateFormats {
@@ -35,9 +36,23 @@ struct Literals {
     }
     
     struct CurrencySymbol {
-        // Try to retrieve currency symbols with api response but format was wrong retrieved
+        // Tried to retrieve currency symbols with api response but format was wrong retrieved
         static let eur = "€"
         static let usd = "$"
         static let gbp = "£"
+    }
+    
+    struct Segues {
+        static let goToBitcoinValueDetails = "GoToBitcoinValueDetail"
+    }
+    
+    struct LabelPlaceholder {
+        static let valueEurPlaceholder = "Value in EUR: "
+        static let valueUsdPlaceholder = "Value in USD: "
+        static let valueGbpPlaceholder = "Value in GBP: "
+    }
+    
+    struct ViewControllerTitles {
+        static let bitcoinHistoricValueTitle = "Bitcoin historic value"
     }
 }

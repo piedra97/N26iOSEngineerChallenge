@@ -63,20 +63,20 @@ struct BitcoinValue {
         if let valueClean = valueEUR {
             return String(format: "%.2f", valueClean) + (Literals.CurrencySymbol.eur)
         }
-        return "--"
+        return Literals.Common.emptyString
     }
     
     func getValueUSD() -> String {
         if let valueClean = valueUSD {
             return String(format: "%.2f", valueClean) + (Literals.CurrencySymbol.usd)
         }
-        return "--"
+        return Literals.Common.emptyString
     }
     
     func getValueGBP() -> String {
         if let valueClean = valueGBP {
             return String(format: "%.2f", valueClean) + (Literals.CurrencySymbol.gbp)
         }
-        return "--"
+        return Literals.Common.emptyString
     }
 }

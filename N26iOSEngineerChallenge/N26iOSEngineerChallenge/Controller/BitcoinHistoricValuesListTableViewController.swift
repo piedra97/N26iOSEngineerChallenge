@@ -19,6 +19,12 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchBitcoinHistoricValues()
+        setUpViewControllerWith(title: Literals.ViewControllerTitles.bitcoinHistoricValueTitle)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        deselectCell()
     }
     
     // MARK: - API Requests
@@ -33,7 +39,7 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         ServiceLayer.request(router: Router.getBitcoinCurrentValue) { (result:
-            Result<BitcoinCurrentValue?, Error>) in
+                                                                        Result<BitcoinCurrentValue?, Error>) in
             switch result {
             case .success(let response):
                 currentValueResponse = response
@@ -83,6 +89,7 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
         dispatchGroup.notify(queue: .main) {
             if let error = networkError {
                 super.showErrorDialog(error: error)
+                super.presentEmptyState(message: Literals.EmptyState.historicValues, tableView: self.tableView)
             } else {
                 if let currentValue = currentValueResponse, let eurValue = bitcoinEurHistoricValueResponse, let usdValue = bitcoinUsdHistoricValueResponse, let gbpValue = bitcoinGbpHistoricValueResponse {
                     if eurValue.bpi.isEmpty {
@@ -96,9 +103,33 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
             }
         }
     }
+    
+    // MARK: - View configuration
+    
+    private func deselectCell() {
+        // We need to deselct row manually because controller is not a UITableViewController
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
+    // MARK: - Navigation Management
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == Literals.Segues.goToBitcoinValueDetails,
+              let destination = segue.destination as? BitcoinValueDetailViewController,
+              let cell = sender as? UITableViewCell,
+              let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        let bitcoinValue = cellModel?[indexPath.row]
+        destination.bitcoinValue = bitcoinValue
+    }
+    
 }
 
 //MARK: -TableViewDataSource & Delegate
+
 extension BitcoinHistoricValuesListTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
