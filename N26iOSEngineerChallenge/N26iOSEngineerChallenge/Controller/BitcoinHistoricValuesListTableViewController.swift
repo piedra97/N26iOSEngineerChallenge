@@ -33,15 +33,17 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
     private func fetchBitcoinHistoricValues() {
         showActivityIndicator(style: .large, center: self.view.center)
         NetworkRequest.shared.makeBitcoinHistoricValuesRequest { (bitcoinValue) in
+            self.hideActivityIndicator()
             self.processSuccessDataFromAPI(successData: bitcoinValue)
         } empty: { (isEmpty) in
+            self.hideActivityIndicator()
             if isEmpty {
                 self.presentEmptyState()
             }
         } failure: { (error) in
+            self.hideActivityIndicator()
             self.processErrorData(error: error)
         }
-        hideActivityIndicator()
     }
     
     // MARK: - View configuration
