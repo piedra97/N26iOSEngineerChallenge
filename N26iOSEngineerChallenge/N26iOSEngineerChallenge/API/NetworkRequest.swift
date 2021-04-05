@@ -24,8 +24,7 @@ struct NetworkRequest {
         
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        ServiceLayer.request(router: Router.getBitcoinCurrentValue) { (result:
-                                                                        Result<BitcoinCurrentValue?, Error>) in
+        ServiceLayer.request(router: Router.getBitcoinCurrentValue) { (result: Result<BitcoinCurrentValue?, Error>) in
             switch result {
             case .success(let response):
                 currentValueResponse = response
