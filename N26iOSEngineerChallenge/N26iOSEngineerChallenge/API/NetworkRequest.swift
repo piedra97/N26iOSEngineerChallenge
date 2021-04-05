@@ -15,7 +15,7 @@ struct NetworkRequest {
         
     }
     
-    static func makeBitcoinHistoricValuesRequest(success: @escaping (BitcoinHistoricValueViewModel) -> (), empty: @escaping (Bool) -> (), failure: @escaping (Error)->()) {
+    func makeBitcoinHistoricValuesRequest(success: @escaping (BitcoinHistoricValueViewModel) -> (), empty: @escaping (Bool) -> (), failure: @escaping (Error)->()) {
         var currentValueResponse: BitcoinCurrentValue?
         var bitcoinEurHistoricValueResponse: BitcoinHistoricValue?
         var bitcoinUsdHistoricValueResponse: BitcoinHistoricValue?
