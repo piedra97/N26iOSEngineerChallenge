@@ -10,7 +10,6 @@ import Foundation
 // MARK: - Empty
 struct BitcoinHistoricValue: Codable {
     var bpi: [String: Double]
-    let disclaimer: String
     
     func getDayFor(indexPath: IndexPath) -> String {
         return bpi.keys[getIndex(index: indexPath.row)]
@@ -25,7 +24,7 @@ struct BitcoinHistoricValue: Codable {
     }
     
     private func getFormatedValue(value: Double) -> String {
-        return String(format: "%.2f", value) + "€"
+        return String(format: "%.2f", value) + Literals.CurrencySymbol.eur
     }
 }
 

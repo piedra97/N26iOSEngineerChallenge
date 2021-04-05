@@ -26,4 +26,10 @@ extension UITableView {
         self.backgroundView = nil
         self.separatorStyle = .singleLine
     }
+    
+    func deselectCell() {
+        if let indexPath = self.indexPathForSelectedRow {
+            self.deselectRow(at: indexPath, animated: true)
+        }
+    }
 }

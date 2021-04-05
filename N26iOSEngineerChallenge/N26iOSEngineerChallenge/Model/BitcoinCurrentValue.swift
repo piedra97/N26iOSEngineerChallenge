@@ -8,7 +8,6 @@
 import Foundation
 // MARK: - Empty
 struct BitcoinCurrentValue: Codable {
-    let disclaimer, chartName: String?
     let bpi: Bpi?
     
     func getBitcoinRateEur() -> Double? {
@@ -21,18 +20,6 @@ struct BitcoinCurrentValue: Codable {
     
     func getBitcoinRateGbp() -> Double? {
         return self.bpi?.gbp?.rateFloat
-    }
-    
-    func getEurSymbol() -> String? {
-        return self.bpi?.eur?.symbol
-    }
-    
-    func getUsdSymbol() -> String? {
-        return self.bpi?.usd?.symbol
-    }
-    
-    func getGbpSymbol() -> String? {
-        return self.bpi?.gbp?.symbol
     }
 }
 
@@ -49,12 +36,9 @@ struct Bpi: Codable {
 
 // MARK: - Eur
 struct Currency: Codable {
-    let code, symbol, rate, description: String?
     let rateFloat: Double?
 
     enum CodingKeys: String, CodingKey {
-        case code, symbol, rate
-        case description = "description"
         case rateFloat = "rate_float"
     }
 }

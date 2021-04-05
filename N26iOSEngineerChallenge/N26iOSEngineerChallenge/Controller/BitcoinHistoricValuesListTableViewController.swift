@@ -30,77 +30,14 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
     // MARK: - API Requests
     
     private func fetchBitcoinHistoricValues() {
-        var currentValueResponse: BitcoinCurrentValue?
-        var bitcoinEurHistoricValueResponse: BitcoinHistoricValue?
-        var bitcoinUsdHistoricValueResponse: BitcoinHistoricValue?
-        var bitcoinGbpHistoricValueResponse: BitcoinHistoricValue?
-        var networkError: Error?
-        
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        ServiceLayer.request(router: Router.getBitcoinCurrentValue) { (result:
-                                                                        Result<BitcoinCurrentValue?, Error>) in
-            switch result {
-            case .success(let response):
-                currentValueResponse = response
-                dispatchGroup.leave()
-            case .failure(let error):
-                networkError = error
-                dispatchGroup.leave()
+        NetworkRequest.makeBitcoinHistoricValuesRequest { (bitcoinValue) in
+            self.processSuccessDataFromAPI(successData: bitcoinValue)
+        } empty: { (isEmpty) in
+            if isEmpty {
+                self.presentEmptyState()
             }
-        }
-        
-        dispatchGroup.enter()
-        ServiceLayer.request(router: Router.getBitcoinFromTodayToTwoWeeksEur) { (result: Result<BitcoinHistoricValue? , Error>) in
-            switch result {
-            case .success(let response):
-                bitcoinEurHistoricValueResponse = response
-                dispatchGroup.leave()
-            case .failure(let error):
-                networkError = error
-                dispatchGroup.leave()
-            }
-        }
-        
-        dispatchGroup.enter()
-        ServiceLayer.request(router: Router.getBitcoinFromTodayToTwoWeeksUsd) { (result: Result<BitcoinHistoricValue? , Error>) in
-            switch result {
-            case .success(let response):
-                bitcoinUsdHistoricValueResponse = response
-                dispatchGroup.leave()
-            case .failure(let error):
-                networkError = error
-                dispatchGroup.leave()
-            }
-        }
-        
-        dispatchGroup.enter()
-        ServiceLayer.request(router: Router.getBitcoinFromTodayToTwoWeeksGbp) { (result: Result<BitcoinHistoricValue? , Error>) in
-            switch result {
-            case .success(let response):
-                bitcoinGbpHistoricValueResponse = response
-                dispatchGroup.leave()
-            case .failure(let error):
-                networkError = error
-                dispatchGroup.leave()
-            }
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            if let error = networkError {
-                super.showErrorDialog(error: error)
-                super.presentEmptyState(message: Literals.EmptyState.historicValues, tableView: self.tableView)
-            } else {
-                if let currentValue = currentValueResponse, let eurValue = bitcoinEurHistoricValueResponse, let usdValue = bitcoinUsdHistoricValueResponse, let gbpValue = bitcoinGbpHistoricValueResponse {
-                    if eurValue.bpi.isEmpty {
-                        super.presentEmptyState(message: Literals.EmptyState.historicValues, tableView: self.tableView)
-                    } else {
-                        let viewModel = BitcoinHistoricValueViewModel(historicValuesEurResponse: eurValue, historicValuesUsdResponse: usdValue, historicValuesGbpResponse: gbpValue, currentValueResponse: currentValue)
-                        self.cellModel = viewModel.values
-                        self.tableView.reloadData()
-                    }
-                }
-            }
+        } failure: { (error) in
+            self.processErrorData(error: error)
         }
     }
     
@@ -108,9 +45,22 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
     
     private func deselectCell() {
         // We need to deselct row manually because controller is not a UITableViewController
-        if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
+        tableView.deselectCell()
+    }
+    
+    private func processSuccessDataFromAPI(successData: BitcoinHistoricValueViewModel) {
+        self.cellModel = successData.values
+        self.tableView.reloadData()
+    }
+    
+    private func presentEmptyState() {
+        self.tableView.setEmptyMessage(message: Literals.EmptyState.historicValues)
+    }
+    
+    private func processErrorData(error: Error) {
+        super.showErrorDialog(error: error)
+        presentEmptyState()
+        
     }
     
     // MARK: - Navigation Management
@@ -125,7 +75,6 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
         let bitcoinValue = cellModel?[indexPath.row]
         destination.bitcoinValue = bitcoinValue
     }
-    
 }
 
 //MARK: -TableViewDataSource & Delegate

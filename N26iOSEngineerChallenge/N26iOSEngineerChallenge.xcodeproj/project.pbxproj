@@ -10,13 +10,13 @@
 		23195ECF2617619500A5BFB8 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23195ECE2617619500A5BFB8 /* BaseViewController.swift */; };
 		23195EDB261765F200A5BFB8 /* Literals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23195EDA261765F200A5BFB8 /* Literals.swift */; };
 		23195EF72617ADD300A5BFB8 /* UITableView+EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23195EF62617ADD300A5BFB8 /* UITableView+EmptyState.swift */; };
+		23684614261B206D0058C0B8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23684613261B206D0058C0B8 /* NetworkRequest.swift */; };
 		237219C7261A39C900571875 /* BitcoinValueDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237219C6261A39C900571875 /* BitcoinValueDetailController.swift */; };
 		2375504426171CFE00331898 /* BitcoinHistoricValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375504326171CFE00331898 /* BitcoinHistoricValue.swift */; };
 		2375504826171F4700331898 /* BitcoinCurrentValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375504726171F4700331898 /* BitcoinCurrentValue.swift */; };
 		2375504E2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2375504D2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift */; };
 		23851E8226164B2F00144004 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E8126164B2F00144004 /* AppDelegate.swift */; };
 		23851E8426164B2F00144004 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E8326164B2F00144004 /* SceneDelegate.swift */; };
-		23851E8626164B2F00144004 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23851E8526164B2F00144004 /* ViewController.swift */; };
 		23851E8926164B2F00144004 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23851E8726164B2F00144004 /* Main.storyboard */; };
 		23851E8B26164B3100144004 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23851E8A26164B3100144004 /* Assets.xcassets */; };
 		23851E8E26164B3100144004 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23851E8C26164B3100144004 /* LaunchScreen.storyboard */; };
@@ -30,6 +30,7 @@
 		23195ECE2617619500A5BFB8 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		23195EDA261765F200A5BFB8 /* Literals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Literals.swift; sourceTree = "<group>"; };
 		23195EF62617ADD300A5BFB8 /* UITableView+EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+EmptyState.swift"; sourceTree = "<group>"; };
+		23684613261B206D0058C0B8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		237219C6261A39C900571875 /* BitcoinValueDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinValueDetailController.swift; sourceTree = "<group>"; };
 		2375504326171CFE00331898 /* BitcoinHistoricValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinHistoricValue.swift; sourceTree = "<group>"; };
 		2375504726171F4700331898 /* BitcoinCurrentValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinCurrentValue.swift; sourceTree = "<group>"; };
@@ -37,7 +38,6 @@
 		23851E7E26164B2F00144004 /* N26iOSEngineerChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = N26iOSEngineerChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23851E8126164B2F00144004 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23851E8326164B2F00144004 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		23851E8526164B2F00144004 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		23851E8826164B2F00144004 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		23851E8A26164B3100144004 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23851E8D26164B3100144004 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,8 +62,18 @@
 		23195EE92617693700A5BFB8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				23195EF62617ADD300A5BFB8 /* UITableView+EmptyState.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		23684617261B20800058C0B8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				23195EDA261765F200A5BFB8 /* Literals.swift */,
+				23851E992616504B00144004 /* UtilsDate.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		2375504226171ACE00331898 /* Model */ = {
@@ -79,6 +89,7 @@
 		2375504A261724CC00331898 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				23195ECE2617619500A5BFB8 /* BaseViewController.swift */,
 				2375504D2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift */,
 				237219C6261A39C900571875 /* BitcoinValueDetailController.swift */,
 			);
@@ -112,6 +123,7 @@
 		23851E8026164B2F00144004 /* N26iOSEngineerChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				23684617261B20800058C0B8 /* Utils */,
 				23195EE92617693700A5BFB8 /* Extensions */,
 				2375504B261724D400331898 /* View */,
 				2375504A261724CC00331898 /* Controller */,
@@ -119,14 +131,9 @@
 				23851E9C2616547500144004 /* API */,
 				23851E8126164B2F00144004 /* AppDelegate.swift */,
 				23851E8326164B2F00144004 /* SceneDelegate.swift */,
-				23851E8526164B2F00144004 /* ViewController.swift */,
 				23851E8A26164B3100144004 /* Assets.xcassets */,
 				23851E8C26164B3100144004 /* LaunchScreen.storyboard */,
 				23851E8F26164B3100144004 /* Info.plist */,
-				23851E992616504B00144004 /* UtilsDate.swift */,
-				23195ECE2617619500A5BFB8 /* BaseViewController.swift */,
-				23195EDA261765F200A5BFB8 /* Literals.swift */,
-				23195EF62617ADD300A5BFB8 /* UITableView+EmptyState.swift */,
 			);
 			path = N26iOSEngineerChallenge;
 			sourceTree = "<group>";
@@ -136,6 +143,7 @@
 			children = (
 				23851E9D2616551A00144004 /* ServiceLayer.swift */,
 				23851E9626164B9E00144004 /* Router.swift */,
+				23684613261B206D0058C0B8 /* NetworkRequest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -214,9 +222,9 @@
 				2375504E2617262100331898 /* BitcoinHistoricValuesListTableViewController.swift in Sources */,
 				23F650FE26185D5F00130A08 /* BitcoinHistoricValueViewModel.swift in Sources */,
 				23195ECF2617619500A5BFB8 /* BaseViewController.swift in Sources */,
+				23684614261B206D0058C0B8 /* NetworkRequest.swift in Sources */,
 				23851E9E2616551A00144004 /* ServiceLayer.swift in Sources */,
 				23851E9A2616504B00144004 /* UtilsDate.swift in Sources */,
-				23851E8626164B2F00144004 /* ViewController.swift in Sources */,
 				23195EDB261765F200A5BFB8 /* Literals.swift in Sources */,
 				2375504826171F4700331898 /* BitcoinCurrentValue.swift in Sources */,
 				237219C7261A39C900571875 /* BitcoinValueDetailController.swift in Sources */,
@@ -300,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -355,7 +363,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

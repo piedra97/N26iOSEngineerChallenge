@@ -7,15 +7,15 @@
 
 import Foundation
 
-class UtilsDate {
+struct UtilsDate {
     
     // Returns the today date in a given date format
-    class func getActualDate(dateFormat: String) -> String? {
+    static func getActualDate(dateFormat: String) -> String? {
         return getDateFormatter(dateFormat: dateFormat).string(from: Date())
     }
     
     // Returns the date in two weeks from now
-    class func getDateFromTwoWeeksBehind(dateFormat: String) -> String? {
+    static func getDateFromTwoWeeksBehind(dateFormat: String) -> String? {
         guard let twoWeeksDate = Calendar.current.date(byAdding: .day, value: -14, to: Date()) else {
             return nil
         }
@@ -23,17 +23,17 @@ class UtilsDate {
     }
     
     // Returns a DateFormatter object with the desire date format
-    private class func getDateFormatter(dateFormat: String) -> DateFormatter {
+    private static func getDateFormatter(dateFormat: String) -> DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = dateFormat
         return formatter
     }
     
-    class func stringToDate(date: String, dateFormat: String) -> Date? {
+    static func stringToDate(date: String, dateFormat: String) -> Date? {
         return getDateFormatter(dateFormat: dateFormat).date(from: date)
     }
     
-    class func dateToString(date: Date, dateFormat: String) -> String {
+    static func dateToString(date: Date, dateFormat: String) -> String {
         return getDateFormatter(dateFormat: dateFormat).string(from: date)
     }
 }

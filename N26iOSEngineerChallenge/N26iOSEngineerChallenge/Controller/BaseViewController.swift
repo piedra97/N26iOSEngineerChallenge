@@ -45,9 +45,6 @@ class BaseViewController: UIViewController {
                      completion: nil);
     }
     
-    func presentEmptyState(message: String, tableView: UITableView) {
-        tableView.setEmptyMessage(message: message)
-    }
     
     func setUpViewControllerWith(title: String) {
         self.title = title
