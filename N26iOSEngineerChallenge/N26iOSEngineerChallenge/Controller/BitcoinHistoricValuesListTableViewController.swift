@@ -9,10 +9,11 @@ import UIKit
 
 class BitcoinHistoricValuesListTableViewController: BaseViewController {
     
-    private var cellModel: [BitcoinValue]?
-    
     // MARK: - Outlets
     @IBOutlet var tableView: UITableView!
+    
+    // MARK: - Properties
+    private var cellModel: [BitcoinValue]?
     
     // MARK: - View Lifecycle
     
