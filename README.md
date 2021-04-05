@@ -9,7 +9,7 @@ This app can be executed in any iPhone device with iOS 11.0 or higher
 
 ## App Architecture & design patterns
 
-The app follows the recommended MVC pattern recommended by Apple. 
+The app follows the MVC pattern recommended by Apple. 
 
 ### Model 
 
