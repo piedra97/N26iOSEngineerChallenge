@@ -87,7 +87,6 @@ class BitcoinHistoricValuesListTableViewController: BaseViewController {
 extension BitcoinHistoricValuesListTableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Api service don't retrieve todays bitcoin value
         self.cellModel?.count ?? 0
     }
     
